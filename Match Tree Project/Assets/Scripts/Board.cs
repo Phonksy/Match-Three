@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public sealed class Board : MonoBehaviour
 {
@@ -38,6 +39,19 @@ public sealed class Board : MonoBehaviour
 
                 Tiles[x, y] = rows[y].tiles[x];
             }
+        }
+    }
+
+    private void Update()
+    {
+        PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(4);
         }
     }
 
