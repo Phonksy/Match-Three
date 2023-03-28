@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public sealed class Board : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public sealed class Board : MonoBehaviour
 
     public int Width => Tiles.GetLength(dimension:0);
     public int Height => Tiles.GetLength(dimension:1);
+
+    public TextMeshProUGUI history;
 
     private readonly List<Tile> _selection = new List<Tile>();
 
@@ -62,6 +65,8 @@ public sealed class Board : MonoBehaviour
         if(_selection.Count <2) return;
 
         Debug.Log($"Selected tiles at ({_selection[0].x}, {_selection[0].y}) and ({_selection[1].x}, {_selection[1].y})");
+
+        history.text = history.text + $"\n ({_selection[0].x+1}, {_selection[0].y+1}) and ({_selection[1].x+1}, {_selection[1].y+1})";
 
         await Swap(_selection[0], _selection[1]);
 
