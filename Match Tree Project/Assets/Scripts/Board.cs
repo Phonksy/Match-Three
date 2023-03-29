@@ -143,7 +143,7 @@ public sealed class Board : MonoBehaviour
 
                 await deflateSequance.Play().AsyncWaitForCompletion();
 
-                ScoreCounter.Instance.Score += tile.Item.value * connectedTiles.Count;
+                ScoreCounter.Instance.Score += connectedTiles.Count;
 
                 var inflateSequence = DOTween.Sequence();
 
