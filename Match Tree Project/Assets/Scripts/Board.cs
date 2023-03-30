@@ -56,13 +56,26 @@ public sealed class Board : MonoBehaviour
         }
     }
 
+    private bool _isAnimating = false;
+
     public async void Select(Tile tile)
     {
+        if (_isAnimating) return;
         if(!_selection.Contains(tile)) _selection.Add(tile);    
 
         if(_selection.Count <2) return;
 
+        var dx = Mathf.Abs(_selection[0].x - _selection[1].x);
+        var dy = Mathf.Abs(_selection[0].y - _selection[1].y);
+        if (dx + dy > 1)
+    {
+        _selection.Clear();
+        return;
+    }
+
         Debug.Log($"Selected tiles at ({_selection[0].x}, {_selection[0].y}) and ({_selection[1].x}, {_selection[1].y})");
+
+        
 
         await Swap(_selection[0], _selection[1]);
 
@@ -80,6 +93,7 @@ public sealed class Board : MonoBehaviour
 
     public async Task Swap(Tile tile1, Tile tile2)
     {
+    _isAnimating = true;
         var icon1 = tile1.icon;
         var icon2 = tile2.icon;
 
@@ -103,6 +117,7 @@ public sealed class Board : MonoBehaviour
         
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
+        _isAnimating = false;
     }
 
     private bool CanPop()
