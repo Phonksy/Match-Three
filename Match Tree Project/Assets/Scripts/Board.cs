@@ -43,19 +43,6 @@ public sealed class Board : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        PauseGame();
-    }
-
-    public void PauseGame()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(4);
-        }
-    }
-
     private bool _isAnimating = false;
 
     public async void Select(Tile tile)
