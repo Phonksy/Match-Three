@@ -30,7 +30,6 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(10);
         else
             SceneManager.LoadScene(11);
-
     }
 
     public void QuitGame()

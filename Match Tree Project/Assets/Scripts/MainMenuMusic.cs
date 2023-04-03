@@ -16,7 +16,7 @@ public class MainMenuMusic : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(audioSourceInstance.gameObject);
         }
     }
 }

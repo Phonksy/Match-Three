@@ -21,7 +21,10 @@ public sealed class Board : MonoBehaviour
 
     private const float TweenDuration = 0.25f;
 
-    public void Awake() => Instance = this;
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -40,19 +43,6 @@ public sealed class Board : MonoBehaviour
 
                 Tiles[x, y] = rows[y].tiles[x];
             }
-        }
-    }
-
-    private void Update()
-    {
-        PauseGame();
-    }
-
-    public void PauseGame()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(4);
         }
     }
 
@@ -167,6 +157,8 @@ public sealed class Board : MonoBehaviour
 
                 await inflateSequence.Play().AsyncWaitForCompletion();
             }
-        }  
+        }
+        
+
     }
 }
