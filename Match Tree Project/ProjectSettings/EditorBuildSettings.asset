@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/achievements.unity
     guid: cbb359dfa1ee1ac4193791b12308f83e
   - enabled: 1
-    path: Assets/Scenes/paused-game-menu.unity
-    guid: 5085cda1077bf974f93a2f062ba149ff
+    path: Assets/Scenes/win-game.unity
+    guid: 62321f4f988cc8c45bcb167ac280c2ad
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

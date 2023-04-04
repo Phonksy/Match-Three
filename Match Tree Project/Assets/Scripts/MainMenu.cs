@@ -72,11 +72,6 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(11);
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     public void OpenAchievements()
     {
         SceneManager.LoadScene(12);

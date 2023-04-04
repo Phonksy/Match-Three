@@ -10,9 +10,16 @@ public sealed class Board : MonoBehaviour
 {
     public static Board Instance { get; private set; }
 
+    public int level;
+
     public Row[] rows;
 
     public Tile[,] Tiles { get; private set; }
+
+    public int[,] Goals = new int[,]{ { 100, 0 }, { 200, 0 }, { 300, 0 }, { 100, 20 }, { 500, 0 }, { 0, 50 }, { 500, 0 }, { 100, 0 }, { 500, 150 }, { 200, 100 } };
+
+    private int score = 0;
+    private int gemsPoppedCount = 0;
 
     public int Width => Tiles.GetLength(dimension:0);
     public int Height => Tiles.GetLength(dimension:1);
@@ -43,6 +50,16 @@ public sealed class Board : MonoBehaviour
 
                 Tiles[x, y] = rows[y].tiles[x];
             }
+        }
+    }
+
+    private void Update()
+    {
+        Debug.Log(gemsPoppedCount);
+        
+        if(score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1])
+        {
+            SceneManager.LoadScene(13);
         }
     }
 
@@ -144,7 +161,11 @@ public sealed class Board : MonoBehaviour
 
                 await deflateSequance.Play().AsyncWaitForCompletion();
 
-                ScoreCounter.Instance.Score += connectedTiles.Count;
+                ScoreCounter.Instance.Score += connectedTiles.Count * 2;
+
+                score = ScoreCounter.Instance.Score;
+
+                gemsPoppedCount += connectedTiles.Count;
 
                 var inflateSequence = DOTween.Sequence();
 
@@ -160,5 +181,16 @@ public sealed class Board : MonoBehaviour
         }
         
 
+    }
+
+    void GoalReached ()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                
+            } 
+        }
     }
 }
