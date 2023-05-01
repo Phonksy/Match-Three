@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 1300759645}
   - component: {fileID: 1300759644}
   - component: {fileID: 1300759643}
+  - component: {fileID: 1300759646}
   m_Layer: 5
   m_Name: exit-to-main-menu
   m_TagString: Untagged
@@ -704,7 +705,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300759644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1300759646}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: BackToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300759644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +756,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300759641}
   m_CullTransparentMesh: 1
+--- !u!114 &1300759646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300759641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c184dc07df20d4c862b932777ea722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_select: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
 --- !u!1 &1388937566
 GameObject:
   m_ObjectHideFlags: 0
