@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Security.Cryptography;
+using System.Threading;
+using System.Diagnostics;
+using UnityEditor.Profiling;
 
 public sealed class Board : MonoBehaviour
 {
@@ -13,13 +17,15 @@ public sealed class Board : MonoBehaviour
     public int level;
 
     public Row[] rows;
-
+    
     public Tile[,] Tiles { get; private set; }
-
-    public int[,] Goals = new int[,]{ { 100, 0 }, { 200, 0 }, { 300, 0 }, { 100, 20 }, { 500, 0 }, { 0, 50 }, { 500, 0 }, { 100, 0 }, { 500, 150 }, { 200, 100 } };
+    // Points, Pops, Moves
+    public int[,] Goals = new int[,]{ { 100, 0, 0, 0 }, { 200, 0, 0, 0 }, { 300, 0, 0, 0 }, { 100, 20, 10, 90 }, { 500, 0, 0, 0 }, { 0, 50, 0, 0 }, { 500, 0, 0, 0 }, { 100, 0, 0, 0 }, { 500, 150, 0, 0 }, { 200, 100, 0, 0 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
+
+    private int maxMoves = 0;
 
     public int Width => Tiles.GetLength(dimension:0);
     public int Height => Tiles.GetLength(dimension:1);
@@ -27,6 +33,7 @@ public sealed class Board : MonoBehaviour
     private readonly List<Tile> _selection = new List<Tile>();
 
     private const float TweenDuration = 0.25f;
+    public float timeValue = 0;
 
     public void Awake()
     {
@@ -35,6 +42,16 @@ public sealed class Board : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
+
+        maxMoves = Goals[level, 2];
+        MovesCounter.Instance.Moves = maxMoves;
+
+        timeValue = Goals[level, 3];
+        float minutes = Mathf.FloorToInt(timeValue / 60);
+        float seconds = Mathf.FloorToInt(timeValue % 60);
+        TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
+
         Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];
 
         for(var y = 0; y< Height; y++)
@@ -54,13 +71,36 @@ public sealed class Board : MonoBehaviour
     }
 
     private void Update()
-    {
-        Debug.Log(gemsPoppedCount);
-        
-        if(score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1])
+    {        
+        if(timeValue > 0)
+        {
+            timeValue -= Time.deltaTime;
+        }
+        else
+        {
+            timeValue = 0;
+        }
+
+        DisplayTime(timeValue);
+
+        if (score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1] && maxMoves >= 0 && timeValue > 0)
+        {
+            Time.timeScale = 0f;
+            SceneManager.LoadScene(13);          
+        }
+
+        if(timeValue == 0 || maxMoves == 0)
         {
             SceneManager.LoadScene(13);
         }
+    }
+
+    public void DisplayTime(float time)
+    {
+        UnityEngine.Debug.Log(time);
+        float minutes = Mathf.FloorToInt(time / 60);
+        float seconds = Mathf.FloorToInt(time % 60);
+        TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private bool _isAnimating = false;
@@ -68,21 +108,19 @@ public sealed class Board : MonoBehaviour
     public async void Select(Tile tile)
     {
         if (_isAnimating) return;
+
         if(!_selection.Contains(tile)) _selection.Add(tile);    
 
         if(_selection.Count <2) return;
 
         var dx = Mathf.Abs(_selection[0].x - _selection[1].x);
         var dy = Mathf.Abs(_selection[0].y - _selection[1].y);
+
         if (dx + dy > 1)
-    {
-        _selection.Clear();
-        return;
-    }
-
-        Debug.Log($"Selected tiles at ({_selection[0].x}, {_selection[0].y}) and ({_selection[1].x}, {_selection[1].y})");
-
-        
+        {
+            _selection.Clear();
+            return;
+        }
 
         await Swap(_selection[0], _selection[1]);
 
@@ -98,9 +136,11 @@ public sealed class Board : MonoBehaviour
         _selection.Clear();
     }
 
+    
+
     public async Task Swap(Tile tile1, Tile tile2)
     {
-    _isAnimating = true;
+        _isAnimating = true;
         var icon1 = tile1.icon;
         var icon2 = tile2.icon;
 
@@ -124,6 +164,10 @@ public sealed class Board : MonoBehaviour
         
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
+        maxMoves--;
+
+        MovesCounter.Instance.Moves = maxMoves;
+
         _isAnimating = false;
     }
 
@@ -178,19 +222,6 @@ public sealed class Board : MonoBehaviour
 
                 await inflateSequence.Play().AsyncWaitForCompletion();
             }
-        }
-        
-
-    }
-
-    void GoalReached ()
-    {
-        for(int i = 0; i < 10; i++)
-        {
-            for(int j = 0; j < 2; j++)
-            {
-                
-            } 
-        }
+        }      
     }
 }
