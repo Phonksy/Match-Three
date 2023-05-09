@@ -8,6 +8,7 @@ using TMPro;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Diagnostics;
+using UnityEditor.Profiling;
 
 public sealed class Board : MonoBehaviour
 {
@@ -15,13 +16,11 @@ public sealed class Board : MonoBehaviour
 
     public int level;
 
-    public TextMeshProUGUI movesText;
-
     public Row[] rows;
-
+    
     public Tile[,] Tiles { get; private set; }
     // Points, Pops, Moves
-    public int[,] Goals = new int[,]{ { 100, 0, 0}, { 200, 0, 0 }, { 300, 0, 0 }, { 100, 20, 10 }, { 500, 0, 0 }, { 0, 50, 0 }, { 500, 0, 0 }, { 100, 0, 0 }, { 500, 150, 0 }, { 200, 100, 0 } };
+    public int[,] Goals = new int[,]{ { 100, 0, 0, 0 }, { 200, 0, 0, 0 }, { 300, 0, 0, 0 }, { 100, 20, 10, 90 }, { 500, 0, 0, 0 }, { 0, 50, 0, 0 }, { 500, 0, 0, 0 }, { 100, 0, 0, 0 }, { 500, 150, 0, 0 }, { 200, 100, 0, 0 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -34,6 +33,7 @@ public sealed class Board : MonoBehaviour
     private readonly List<Tile> _selection = new List<Tile>();
 
     private const float TweenDuration = 0.25f;
+    public float timeValue = 0;
 
     public void Awake()
     {
@@ -45,6 +45,12 @@ public sealed class Board : MonoBehaviour
         Time.timeScale = 1;
 
         maxMoves = Goals[level, 2];
+        MovesCounter.Instance.Moves = maxMoves;
+
+        timeValue = Goals[level, 3];
+        float minutes = Mathf.FloorToInt(timeValue / 60);
+        float seconds = Mathf.FloorToInt(timeValue % 60);
+        TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];
 
@@ -65,14 +71,36 @@ public sealed class Board : MonoBehaviour
     }
 
     private void Update()
-    {   
-        
+    {        
+        if(timeValue > 0)
+        {
+            timeValue -= Time.deltaTime;
+        }
+        else
+        {
+            timeValue = 0;
+        }
 
-        if (score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1] && maxMoves == 0)
+        DisplayTime(timeValue);
+
+        if (score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1] && maxMoves >= 0 && timeValue > 0)
         {
             Time.timeScale = 0f;
             SceneManager.LoadScene(13);          
         }
+
+        if(timeValue == 0 || maxMoves == 0)
+        {
+            SceneManager.LoadScene(13);
+        }
+    }
+
+    public void DisplayTime(float time)
+    {
+        UnityEngine.Debug.Log(time);
+        float minutes = Mathf.FloorToInt(time / 60);
+        float seconds = Mathf.FloorToInt(time % 60);
+        TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private bool _isAnimating = false;
