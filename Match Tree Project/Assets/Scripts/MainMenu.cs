@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(Input.GetKey("escape"))
         {
