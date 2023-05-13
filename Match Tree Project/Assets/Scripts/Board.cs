@@ -8,9 +8,12 @@ using TMPro;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEditor.Profiling;
+using UnityEngine.Audio;
 
 public sealed class Board : MonoBehaviour
 {
+    public AudioClip poppingSoundEffect;
+
     public static Board Instance { get; private set; }
 
     public int level;
@@ -247,6 +250,9 @@ public sealed class Board : MonoBehaviour
                 }
 
                 await inflateSequence.Play().AsyncWaitForCompletion();
+                Vector3 screenCenter = new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane);
+                Vector3 worldCenter = Camera.main.ViewportToWorldPoint(screenCenter);
+                AudioSource.PlayClipAtPoint(poppingSoundEffect, worldCenter, 0.2f);
             }
         }
 
