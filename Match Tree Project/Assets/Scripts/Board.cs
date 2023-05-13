@@ -22,7 +22,7 @@ public sealed class Board : MonoBehaviour
     
     public Tile[,] Tiles { get; private set; }
     // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                 10
-    public int[,] Goals = new int[,]{ { 20, -1, -1, -1}, { 20, -1, -1, 180}, { 30, -1, -1, -1}, { 10, -1, 10, -1}, { 50, -1, -1, -1}, { -1, 10, -1, 60}, { 20, -1, -1, 300}, { -1, 10, -1, 60}, { 20, 10, -1, -1}, { -1, 20, -1, 120} };
+    public int[,] Goals = new int[,] { { 100, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
