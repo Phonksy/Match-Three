@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
+    public static int previousScreenIndex = -1;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -50,26 +52,59 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        int screenIndex = 0;
+
         if (level_select.gameObject.tag == "level1")
+        {
             SceneManager.LoadScene(2);
+            screenIndex = 2;
+        }
         else if (level_select.gameObject.tag == "level2")
+        {
             SceneManager.LoadScene(3);
+            screenIndex = 3;
+        }
         else if (level_select.gameObject.tag == "level3")
+        {
             SceneManager.LoadScene(4);
+            screenIndex = 4;
+        }
         else if (level_select.gameObject.tag == "level4")
+        {
             SceneManager.LoadScene(5);
+            screenIndex = 5;
+        }
         else if (level_select.gameObject.tag == "level5")
+        {
             SceneManager.LoadScene(6);
+            screenIndex = 6;
+        }
         else if (level_select.gameObject.tag == "level6")
+        {
             SceneManager.LoadScene(7);
+            screenIndex = 7;
+        }
         else if (level_select.gameObject.tag == "level7")
+        {
             SceneManager.LoadScene(8);
+            screenIndex = 8;
+        }
         else if (level_select.gameObject.tag == "level8")
+        {
             SceneManager.LoadScene(9);
+            screenIndex = 9;
+        }
         else if (level_select.gameObject.tag == "level9")
+        {
             SceneManager.LoadScene(10);
+            screenIndex = 10;
+        }
         else
+        {
             SceneManager.LoadScene(11);
+            screenIndex = 11;
+        }
+        previousScreenIndex = screenIndex;
     }
 
     public void OpenAchievements()
@@ -86,5 +121,20 @@ public class MainMenu : MonoBehaviour
     public void BackToSelect()
     {
         SceneManager.LoadScene(1);
-    }  
+    }
+
+    public void LoadNextLevel()
+    {
+        if (previousScreenIndex != -1 && previousScreenIndex < 12)
+        {
+            previousScreenIndex++;
+            SceneManager.LoadScene(previousScreenIndex);
+        }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(previousScreenIndex);
+    }
+
 }
