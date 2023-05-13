@@ -125,7 +125,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (previousScreenIndex != -1 && previousScreenIndex < 12)
+        if (previousScreenIndex != -1 && previousScreenIndex < 11)
         {
             previousScreenIndex++;
             SceneManager.LoadScene(previousScreenIndex);
