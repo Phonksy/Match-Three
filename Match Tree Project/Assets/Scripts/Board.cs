@@ -57,9 +57,9 @@ public sealed class Board : MonoBehaviour
         if (Goals[level, 3] > 0)
             TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-        Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];
+        Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];        
 
-        for(var y = 0; y< Height; y++)
+        for (var y = 0; y< Height; y++)
         {
             for(var x = 0; x< Width; x++)
             {
@@ -195,7 +195,6 @@ public sealed class Board : MonoBehaviour
         tile2.Item = tile1Item;
 
         _isAnimating = false;
-
     }
 
     private bool CanPop()
