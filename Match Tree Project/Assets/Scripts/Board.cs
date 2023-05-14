@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Security.Cryptography;
 using System.Threading;
-using System.Diagnostics;
 using UnityEditor.Profiling;
+using UnityEngine.Audio;
 
 public sealed class Board : MonoBehaviour
 {
+    public AudioClip poppingSoundEffect;
+
     public static Board Instance { get; private set; }
 
     public int level;
@@ -19,8 +21,8 @@ public sealed class Board : MonoBehaviour
     public Row[] rows;
     
     public Tile[,] Tiles { get; private set; }
-    // Points, Pops, Moves
-    public int[,] Goals = new int[,]{ { 100, 0, 0, 0 }, { 200, 0, 0, 0 }, { 300, 0, 0, 0 }, { 100, 20, 10, 90 }, { 500, 0, 0, 0 }, { 0, 50, 0, 0 }, { 500, 0, 0, 0 }, { 100, 0, 0, 0 }, { 500, 150, 0, 0 }, { 200, 100, 0, 0 } };
+    // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                 10
+    public int[,] Goals = new int[,] { { 100, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -45,12 +47,15 @@ public sealed class Board : MonoBehaviour
         Time.timeScale = 1;
 
         maxMoves = Goals[level, 2];
-        MovesCounter.Instance.Moves = maxMoves;
+        if (Goals[level, 2] > 0)
+            MovesCounter.Instance.Moves = maxMoves;
 
         timeValue = Goals[level, 3];
         float minutes = Mathf.FloorToInt(timeValue / 60);
         float seconds = Mathf.FloorToInt(timeValue % 60);
-        TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (Goals[level, 3] > 0)
+            TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         Tiles = new Tile[rows.Max(row => row.tiles.Length), rows.Length];
 
@@ -71,33 +76,52 @@ public sealed class Board : MonoBehaviour
     }
 
     private void Update()
-    {        
-        if(timeValue > 0)
+    {
+        //Points, Pops, Moves, TimeValue              1                   2                   3                   4                 5                6               7                8                  9                 10
+        //public int[,] Goals = new int[,]{ { 100, -1, -1, -1}, { 200, -1, -1, 180}, { 300, -1, -1, -1}, { 100, -1, 10, -1}, { 500, -1, -1, -1}, { -1, 50, -1, 60}, { 500, -1, -1, 300}, { -1, 100, -1, 60}, { 500, 150, -1, -1}, { -1, 200, -1, 120} };
+
+        //tikrinam, ar reikia laikmačio. Jei reikia - skaičiuojam ir atvaizduojam
+        if (Goals[level, 3] > 0)
         {
+            DisplayTime(timeValue);
             timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            timeValue = 0;
+            if (timeValue < 0)
+                SceneManager.LoadScene(14);
         }
 
-        DisplayTime(timeValue);
-
-        if (score >= Goals[level,0]  && gemsPoppedCount >= Goals[level,1] && maxMoves >= 0 && timeValue > 0)
+        //tikrinam, ar goal turi nurodyta ejimu skaiciu
+        if (Goals[level, 2] > 0)
         {
-            Time.timeScale = 0f;
-            SceneManager.LoadScene(13);          
+            if (maxMoves==0)
+                SceneManager.LoadScene(14);
+            else if (maxMoves>0 && score >= Goals[level,0] && level != 9)
+                SceneManager.LoadScene(13);
+            else if (maxMoves > 0 && score >= Goals[level, 0] && level == 9)
+                SceneManager.LoadScene(15);
         }
 
-        if(timeValue == 0 || maxMoves == 0)
+        //tikrinam, ar surinktas reikiamas kiekis tasku
+        if (Goals[level, 0] > 0)
         {
-            SceneManager.LoadScene(13);
+            if (score >= Goals[level, 0] && level != 9)
+                SceneManager.LoadScene(13);
+            if (score >= Goals[level, 0] && level == 9)
+                SceneManager.LoadScene(15);
         }
+
+        //tikrinam, ar reikia susprogdinti tam tikrą skaičių gems
+        if (Goals[level, 1] > 0)
+        {
+            if (gemsPoppedCount >= Goals[level,1] && level != 9)
+                SceneManager.LoadScene(13);
+            if (gemsPoppedCount >= Goals[level, 1] && level == 9)
+                SceneManager.LoadScene(15);
+        }
+
     }
 
     public void DisplayTime(float time)
     {
-        UnityEngine.Debug.Log(time);
         float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
         TimeCounter.Instance.Timer = string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -123,8 +147,13 @@ public sealed class Board : MonoBehaviour
         }
 
         await Swap(_selection[0], _selection[1]);
+        if (Goals[level, 2] > 0)
+        {
+            maxMoves--;
+            MovesCounter.Instance.Moves = maxMoves;
+        }
 
-        if(CanPop())
+        if (CanPop())
         {
             Pop();
         }
@@ -164,11 +193,9 @@ public sealed class Board : MonoBehaviour
         
         tile1.Item = tile2.Item;
         tile2.Item = tile1Item;
-        maxMoves--;
-
-        MovesCounter.Instance.Moves = maxMoves;
 
         _isAnimating = false;
+
     }
 
     private bool CanPop()
@@ -177,7 +204,10 @@ public sealed class Board : MonoBehaviour
         {
             for(var x = 0; x < Width; x++)
             {
-                if(Tiles[x,y].GetConnectedTiles().Skip(1).Count() >= 2) return true;
+                if (Tiles[x, y].GetConnectedTiles().Skip(1).Count() >= 2)
+                {
+                    return true;
+                }
             }
         }
 
@@ -186,7 +216,7 @@ public sealed class Board : MonoBehaviour
 
     private async void Pop()
     {
-        for(var y = 0; y < Height; y++)
+        for (var y = 0; y < Height; y++)
         {
             for(var x = 0; x < Width; x++)
             {
@@ -205,11 +235,17 @@ public sealed class Board : MonoBehaviour
 
                 await deflateSequance.Play().AsyncWaitForCompletion();
 
-                ScoreCounter.Instance.Score += connectedTiles.Count * 2;
+                if (Goals[level, 0] > 0)
+                {
+                    ScoreCounter.Instance.Score += connectedTiles.Count * 2;
+                    score = ScoreCounter.Instance.Score;
+                }
 
-                score = ScoreCounter.Instance.Score;
-
-                gemsPoppedCount += connectedTiles.Count;
+                if (Goals[level, 1] > 0)
+                {
+                    GemsCounter.Instance.Gems += connectedTiles.Count;
+                    gemsPoppedCount = GemsCounter.Instance.Gems;
+                }
 
                 var inflateSequence = DOTween.Sequence();
 
@@ -220,8 +256,13 @@ public sealed class Board : MonoBehaviour
                     inflateSequence.Join(connectedTile.icon.transform.DOScale(Vector3.one, TweenDuration));
                 }
 
+                Vector3 screenCenter = new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane);
+                Vector3 worldCenter = Camera.main.ViewportToWorldPoint(screenCenter);
+                AudioSource.PlayClipAtPoint(poppingSoundEffect, worldCenter, 0.2f);
                 await inflateSequence.Play().AsyncWaitForCompletion();
+                
             }
-        }      
+        }
+
     }
 }
