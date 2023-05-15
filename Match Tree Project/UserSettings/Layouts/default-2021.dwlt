@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 62
+  controlID: 17
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 93
+  controlID: 26
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 94
+  controlID: 27
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 1228
     height: 648
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -317,39 +317,39 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\MSI\Desktop\Zaidimu kurimo pagrindai\Match-Three\Match
     Tree Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 10}
-    m_SelectedIDs: d2610000
-    m_LastClickedID: 25042
-    m_ExpandedIDs: 00000000d0610000d46100006a640000
+    scrollPos: {x: 0, y: 42}
+    m_SelectedIDs: c0610000
+    m_LastClickedID: 25024
+    m_ExpandedIDs: 000000009a6100009c6100009e610000b2610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Scenes
+      m_OriginalName: Scenes
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 25022
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 5}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -361,7 +361,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d0610000d2610000d4610000
+    m_ExpandedIDs: 000000009a6100009c6100009e610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300000000000012750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 42b1feff62b5feff72b9feffb2bdfeffe0c1fefff0c5fefffac9feff3ccefeff58d2feff54d6feffead9feffe2ddfeff8ee3feff0ee4feff3ae5feff52e6feff12e8feff9ae8feff9eecfefff4eefeffbaf6feff1efcfeffa201ffff1807ffffe80cffff3010ffff2216ffff441dffffa824ffff8c2cffff883bffff243cffff9242ffff4645fffff449ffffb44cffff144dffff684dffffae4dfffff44dffff9e52ffffaa5effff2460ffff4a88ffff7e8cffff0893ffff4295ffff5895ffffe0e1fffff6e1ffff06f4ffff02fbffff008300001283000056830000b6830000e683000038e90000a2e90000cce900002af6000062f600008af60000200f0100821a01002a1b010002250100e0250100c0310100343201006a320100cc390100423a0100463a0100783a0100da4401002045010082450100b045010022510100385101006c51010094510100be510100165701004e570100185801008c580100ca580100fa58010004590100f45e01002a5f01004c5f0100725f01007e5f0100ca640100186501003c650100446501009a650100f66a01005c6b01007a6b0100946b0100ce6b0100227101008c710100ac710100e67c0100bc7d0100c2830100e883010084850100ac8501004e86010014870100288a0100e88b0100788d01003c8f0100f090010044930100c2950100ee970100f8990100609c0100fa9e0100
+      m_ExpandedIDs: b0a2fdfff8a2fdffa2a4fdffaca4fdffb8a4fdffc0a4fdffb4a7fdffa8aafdff9cadfdff90b0fdff86b3fdff7ab6fdff70b9fdff64bcfdff5abffdff5cc2fdff78c2fdff86c2fdffacc4fdffb2e6fdff26eefdff9e24feffb02afeff5c2efeff3032feffde35feff9439feff443dfefff240feffa044feff8048feff4251feffe854feff8c58feff2a5cfeffca5ffeff6663feff0467feffa46afeff4a6efeffe871fefff29ffeff98a5fefff6a7feff10abfeff82affeffdcaffeff82dcfeff06ddfeff1ee3feff12e4feffa007ffff220effff061cffff501dffffa627ffffae2cffffc641ffff8a43ffffc446ffff805bffffc05dffffaa62ffffa467ffffd26affff006effff2e71ffff5c74ffff8a77ffffb87affffe67dffff1481ffff4e84ffff5e94ffff0095ffff8ca0ffff24a4ffffb2a7ffff48abffffd6aeffff62b2fffff6b5ffff7cb9ffff12bdffff2ec2ffffecc7ffff8ccbfffffcceffffacd9ffff20dbffff1ee0ffff06e6ffffb6faffff06600000e094000010950000f6950000269600001298000054980000589f0000889f00006ca50000b8a5000098a70000eca70000c2a9000020aa0000eaab00004cac000036ae000082ae000068b00000b0b00000a6b20000f6b2000004b5000034b50000eab6000090c100003ec20000ae5601004c570100845701003cce0100dcce010026cf01003ed101004ed1010094d101008ad30100b6d301000ad4010072d501001ad6010078d6010062d8010084d80100eed8010008db010020db010066db0100d6dc010086dd0100d6dd0100f4df0100f8df01005ee00100fce10100a6e20100dee20100be040200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -762,9 +762,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 41.35302, y: -26.756964, z: -13.126578}
+    m_Target: {x: 660.4191, y: 347.89066, z: 97.03592}
     speed: 2
-    m_Value: {x: 41.35302, y: -26.756964, z: -13.126578}
+    m_Value: {x: 660.4191, y: 347.89066, z: 97.03592}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -815,9 +815,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 438.8943
+    m_Target: 460.64114
     speed: 2
-    m_Value: 438.8943
+    m_Value: 460.64114
   m_Ortho:
     m_Target: 1
     speed: 2
