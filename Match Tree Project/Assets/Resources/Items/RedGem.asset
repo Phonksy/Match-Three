@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RedGem
   m_EditorClassIdentifier: 
   value: 5
-  sprite: {fileID: 21300000, guid: 89f76b89548873d4ba5e517c189591e1, type: 3}
+  sprite: {fileID: 21300000, guid: 3e50a55758958d94d885b69c2c91cb26, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PurpleGem
   m_EditorClassIdentifier: 
   value: 5
-  sprite: {fileID: 21300000, guid: 2dd7ea8afadf70149a752fd0e574fcda, type: 3}
+  sprite: {fileID: 21300000, guid: 6b86a7da3bc3dab4796dba220977d353, type: 3}
