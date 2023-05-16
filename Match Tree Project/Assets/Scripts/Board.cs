@@ -14,6 +14,8 @@ public sealed class Board : MonoBehaviour
     public GameObject gameCanvas;
     [SerializeField] private UnityEngine.UI.Image image = null;
 
+    public Achievements ach;
+
     public static Board Instance { get; private set; }
 
     public int level;
@@ -22,7 +24,7 @@ public sealed class Board : MonoBehaviour
 
     public Tile[,] Tiles { get; private set; }
     // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                 10
-    public int[,] Goals = new int[,] { { 100, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
+    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -40,7 +42,7 @@ public sealed class Board : MonoBehaviour
     public void Awake()
     {
         Instance = this;
-    }
+    }   
 
     private void Start()
     {
@@ -83,7 +85,7 @@ public sealed class Board : MonoBehaviour
         //public int[,] Goals = new int[,]{ { 100, -1, -1, -1}, { 200, -1, -1, 180}, { 300, -1, -1, -1}, { 100, -1, 10, -1}, { 500, -1, -1, -1}, { -1, 50, -1, 60}, { 500, -1, -1, 300}, { -1, 100, -1, 60}, { 500, 150, -1, -1}, { -1, 200, -1, 120} };
 
         //radom = GameObject.Find("iron");
-        
+
 
         //tikrinam, ar reikia laikmačio. Jei reikia - skaičiuojam ir atvaizduojam
         if (Goals[level, 3] > 0)
@@ -108,6 +110,9 @@ public sealed class Board : MonoBehaviour
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
                 }
+
+                ach.SetAchieved(level, 1);
+
                 Invoke("openScene", 3);
 
             }
@@ -120,6 +125,7 @@ public sealed class Board : MonoBehaviour
         {
             if (score >= Goals[level, 0] && level != 9)
             {
+
                 gameCanvas.SetActive(false);
                 AudioListener.volume = 0;
                 badgeCanvas.SetActive(true);
@@ -127,6 +133,13 @@ public sealed class Board : MonoBehaviour
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
                 }
+
+                ach.SetAchieved(level, 1);
+
+                int[] a = ach.GetAchieved();
+
+                Debug.Log(a[0]);
+
                 Invoke("openScene", 3);
             }
             if (score >= Goals[level, 0] && level == 9)
@@ -145,6 +158,9 @@ public sealed class Board : MonoBehaviour
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
                 }
+
+                ach.SetAchieved(level, 1);
+
                 Invoke("openScene", 3);
 
             }
@@ -292,7 +308,7 @@ public sealed class Board : MonoBehaviour
                 Vector3 screenCenter = new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane);
                 Vector3 worldCenter = Camera.main.ViewportToWorldPoint(screenCenter);
                 AudioSource.PlayClipAtPoint(poppingSoundEffect, worldCenter, 0.2f);
-                
+
                 await inflateSequence.Play().AsyncWaitForCompletion();
 
             }
@@ -305,7 +321,7 @@ public sealed class Board : MonoBehaviour
         yield return new WaitForSeconds(30);
     }
 
-    public void openScene ()
+    public void openScene()
     {
         SceneManager.LoadScene(13);
     }
