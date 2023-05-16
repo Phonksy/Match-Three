@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: YellowGem
   m_EditorClassIdentifier: 
   value: 5
-  sprite: {fileID: 21300000, guid: 5e74cebc1d9bd2f4fbedfbaf05237ed1, type: 3}
+  sprite: {fileID: 21300000, guid: 4638ab69498bd23429e15178c70cf815, type: 3}
