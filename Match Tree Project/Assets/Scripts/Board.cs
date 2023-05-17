@@ -24,7 +24,7 @@ public sealed class Board : MonoBehaviour
 
     public Tile[,] Tiles { get; private set; }
     // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                 10
-    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
+    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 20, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -135,11 +135,6 @@ public sealed class Board : MonoBehaviour
                 }
 
                 ach.SetAchieved(level, 1);
-
-                int[] a = ach.GetAchieved();
-
-                Debug.Log(a[0]);
-
                 Invoke("openScene", 3);
             }
             if (score >= Goals[level, 0] && level == 9)

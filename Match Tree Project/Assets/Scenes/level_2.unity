@@ -2442,6 +2442,7 @@ GameObject:
   - component: {fileID: 1061760802}
   - component: {fileID: 1061760801}
   - component: {fileID: 1061760805}
+  - component: {fileID: 1061760806}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -2569,6 +2570,7 @@ MonoBehaviour:
   badgeCanvas: {fileID: 591994768}
   gameCanvas: {fileID: 2143547146}
   image: {fileID: 1430863212}
+  ach: {fileID: 1061760806}
   level: 1
   rows:
   - {fileID: 1833859230}
@@ -2578,6 +2580,18 @@ MonoBehaviour:
   - {fileID: 1293803167}
   - {fileID: 1193548486}
   timeValue: 0
+--- !u!114 &1061760806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061760799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e36fcdff22ce149bd6e76764ddfbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1078752872
 GameObject:
   m_ObjectHideFlags: 0
