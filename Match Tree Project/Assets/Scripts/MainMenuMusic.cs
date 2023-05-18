@@ -14,6 +14,10 @@ public class MainMenuMusic : MonoBehaviour
             audioSourceInstance.Play();
             DontDestroyOnLoad(audioSourceInstance.gameObject);
         }
+        else if (audioSourceInstance != null)
+        {
+            return;
+        }
         else
         {
             Destroy(audioSourceInstance.gameObject);

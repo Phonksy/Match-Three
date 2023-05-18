@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     public Button level_select;
 
-    public static bool GameIsPaused = false;   
+    public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
 
@@ -21,10 +22,14 @@ public class MainMenu : MonoBehaviour
         {
             if(GameIsPaused)
             {
+                Debug.Log(Input.GetKey("escape"));
+                Debug.Log("Resume");
                 Resume();
             }
             else
             {
+                Debug.Log(Input.GetKey("escape"));
+                Debug.Log("Pause");
                 Pause();
             }
         }
