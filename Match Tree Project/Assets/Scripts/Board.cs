@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.VisualScripting;
 
 public sealed class Board : MonoBehaviour
 {
@@ -46,7 +47,6 @@ public sealed class Board : MonoBehaviour
 
     private void Start()
     {
-        //radom = GameObject.FindGameObjectWithTag(level.ToString());
         AudioListener.volume = 1.0f;
         Time.timeScale = 1;
 
@@ -84,9 +84,6 @@ public sealed class Board : MonoBehaviour
         //Points, Pops, Moves, TimeValue              1                   2                   3                   4                 5                6               7                8                  9                 10
         //public int[,] Goals = new int[,]{ { 100, -1, -1, -1}, { 200, -1, -1, 180}, { 300, -1, -1, -1}, { 100, -1, 10, -1}, { 500, -1, -1, -1}, { -1, 50, -1, 60}, { 500, -1, -1, 300}, { -1, 100, -1, 60}, { 500, 150, -1, -1}, { -1, 200, -1, 120} };
 
-        //radom = GameObject.Find("iron");
-
-
         //tikrinam, ar reikia laikmačio. Jei reikia - skaičiuojam ir atvaizduojam
         if (Goals[level, 3] > 0)
         {
@@ -103,9 +100,7 @@ public sealed class Board : MonoBehaviour
                 SceneManager.LoadScene(14);
             else if (maxMoves > 0 && score >= Goals[level, 0] && level != 9)
             {
-                gameCanvas.SetActive(false);
-                AudioListener.volume = 0;
-                badgeCanvas.SetActive(true);
+                poppingSoundEffect = null;
                 if (image != null)
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
@@ -113,7 +108,7 @@ public sealed class Board : MonoBehaviour
 
                 ach.SetAchieved(level, 1);
 
-                Invoke("openScene", 3);
+                Invoke("openScene", 1);
 
             }
             else if (maxMoves > 0 && score >= Goals[level, 0] && level == 9)
@@ -125,17 +120,14 @@ public sealed class Board : MonoBehaviour
         {
             if (score >= Goals[level, 0] && level != 9)
             {
-
-                gameCanvas.SetActive(false);
-                AudioListener.volume = 0;
-                badgeCanvas.SetActive(true);
+                poppingSoundEffect = null;
                 if (image != null)
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
                 }
 
                 ach.SetAchieved(level, 1);
-                Invoke("openScene", 3);
+                Invoke("openScene", 1);
             }
             if (score >= Goals[level, 0] && level == 9)
                 SceneManager.LoadScene(15);
@@ -146,9 +138,7 @@ public sealed class Board : MonoBehaviour
         {
             if (gemsPoppedCount >= Goals[level, 1] && level != 9)
             {
-                gameCanvas.SetActive(false);
-                AudioListener.volume = 0;
-                badgeCanvas.SetActive(true);
+                poppingSoundEffect = null;
                 if (image != null)
                 {
                     image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
@@ -156,7 +146,7 @@ public sealed class Board : MonoBehaviour
 
                 ach.SetAchieved(level, 1);
 
-                Invoke("openScene", 3);
+                Invoke("openScene", 1);
 
             }
             if (gemsPoppedCount >= Goals[level, 1] && level == 9)
@@ -302,10 +292,12 @@ public sealed class Board : MonoBehaviour
 
                 Vector3 screenCenter = new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane);
                 Vector3 worldCenter = Camera.main.ViewportToWorldPoint(screenCenter);
-                AudioSource.PlayClipAtPoint(poppingSoundEffect, worldCenter, 0.2f);
+                if(poppingSoundEffect != null) 
+                {
+                    AudioSource.PlayClipAtPoint(poppingSoundEffect, worldCenter, 0.2f);
+                }                
 
                 await inflateSequence.Play().AsyncWaitForCompletion();
-
             }
         }
 

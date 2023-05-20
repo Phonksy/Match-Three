@@ -13,6 +13,8 @@ public class Badges : MonoBehaviour
 
     public GameObject badge;
 
+    public TextMeshProUGUI text;
+
     public int level;
 
     void Start()
@@ -26,6 +28,28 @@ public class Badges : MonoBehaviour
         else if (a[level] == 0) 
         {
             badge.SetActive(false);
-        }           
+        }
+
+        if (badge.activeSelf) 
+        {
+            text.enabled = false;
+        }
+        else if(!badge.activeSelf) 
+        {
+            text.enabled = true;
+        }
+    }
+
+    private void OnMouseOver()
+    {
+        if (badge.activeSelf) 
+        {
+            text.enabled = true;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        text.enabled = false;
     }
 }
