@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 35716261}
   - component: {fileID: 35716260}
   - component: {fileID: 35716259}
+  - component: {fileID: 35716262}
   m_Layer: 5
   m_Name: pause-button
   m_TagString: Untagged
@@ -205,7 +206,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35716260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 35716262}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2143547146}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &35716260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +269,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35716257}
   m_CullTransparentMesh: 1
+--- !u!114 &35716262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35716257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c184dc07df20d4c862b932777ea722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_select: {fileID: 0}
+  pauseMenuUI: {fileID: 1806273626}
 --- !u!1001 &166329300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1343,6 +1382,7 @@ GameObject:
   - component: {fileID: 520431361}
   - component: {fileID: 520431360}
   - component: {fileID: 520431359}
+  - component: {fileID: 520431362}
   m_Layer: 5
   m_Name: Button-back
   m_TagString: Untagged
@@ -1413,7 +1453,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 520431360}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 520431362}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: BackToSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &520431360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,6 +1504,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520431357}
   m_CullTransparentMesh: 1
+--- !u!114 &520431362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520431357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c184dc07df20d4c862b932777ea722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_select: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
 --- !u!1 &624250528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2962,7 @@ GameObject:
   - component: {fileID: 1061760802}
   - component: {fileID: 1061760801}
   - component: {fileID: 1061760805}
+  - component: {fileID: 1061760806}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -3023,7 +3090,7 @@ MonoBehaviour:
   badgeCanvas: {fileID: 240787198}
   gameCanvas: {fileID: 2143547146}
   image: {fileID: 2145803504}
-  ach: {fileID: 0}
+  ach: {fileID: 1061760806}
   level: 4
   rows:
   - {fileID: 1833859230}
@@ -3033,6 +3100,18 @@ MonoBehaviour:
   - {fileID: 1293803167}
   - {fileID: 1004885386}
   timeValue: 0
+--- !u!114 &1061760806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061760799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e36fcdff22ce149bd6e76764ddfbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1075304267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4098,6 +4177,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2143547146}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1473752516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4984,19 +5075,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2143547146}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -5007,6 +5086,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 652160688}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1849266469
 MonoBehaviour:
