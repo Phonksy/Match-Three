@@ -15,6 +15,7 @@ TagManager:
   - 8
   - 9
   - next_level
+  - GameMusic
   layers:
   - Default
   - TransparentFX

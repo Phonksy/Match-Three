@@ -15,6 +15,8 @@ public class Badges : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public TextMeshProUGUI question;
+
     public int level;
 
     void Start()
@@ -24,10 +26,12 @@ public class Badges : MonoBehaviour
         if (a[level] == 1)
         {
             badge.SetActive(true);
+            question.enabled = false;
         }
         else if (a[level] == 0) 
         {
             badge.SetActive(false);
+            question.enabled = true;
         }
 
         if (badge.activeSelf) 
