@@ -73,7 +73,8 @@ public sealed class Tile : MonoBehaviour
         var image = GetComponent<Image>();
         if (image != null)
         {
-            image.color = Color.cyan;
+            Color newColor = new Color(0.3f, 0.4f, 0.6f, 0.3f);
+            image.color = newColor;
         }
     }
 

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,24 +16,17 @@ public class MainMenu : MonoBehaviour
 
     public static int previousScreenIndex = -1;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public GameObject QuestionCanvas;
+
+    public Achievements ach;
+
+    public static int level = -1;
+
+    public void PressedYes() 
     {
-        if(Input.GetKey("escape"))
-        {
-            if(GameIsPaused)
-            {
-                Debug.Log(Input.GetKey("escape"));
-                Debug.Log("Resume");
-                Resume();
-            }
-            else
-            {
-                Debug.Log(Input.GetKey("escape"));
-                Debug.Log("Pause");
-                Pause();
-            }
-        }
+        int[] a = ach.GetAchieved();
+
+        SceneManager.LoadScene(level+2);
     }
 
     public void Resume()
@@ -57,57 +51,149 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        int[] a = ach.GetAchieved();
+
         int screenIndex = 0;
 
         if (level_select.gameObject.tag == "level1")
         {
-            SceneManager.LoadScene(2);
-            screenIndex = 2;
+            if (a[0] == 0)
+            {
+                SceneManager.LoadScene(2);
+                screenIndex = 2;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 0;
+            }
         }
         else if (level_select.gameObject.tag == "level2")
         {
-            SceneManager.LoadScene(3);
-            screenIndex = 3;
+            if (a[1] == 0)
+            {
+                SceneManager.LoadScene(3);
+                screenIndex = 3;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 1;
+            }
         }
         else if (level_select.gameObject.tag == "level3")
         {
-            SceneManager.LoadScene(4);
-            screenIndex = 4;
+            if (a[2] == 0)
+            {
+                SceneManager.LoadScene(4);
+                screenIndex = 4;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 2;
+            }
         }
         else if (level_select.gameObject.tag == "level4")
         {
-            SceneManager.LoadScene(5);
-            screenIndex = 5;
+            if (a[3] == 0)
+            {
+                SceneManager.LoadScene(5);
+                screenIndex = 5;
+            }
+
+            else
+            {
+                level = 3;
+                QuestionCanvas.SetActive(true);
+            }
         }
         else if (level_select.gameObject.tag == "level5")
         {
-            SceneManager.LoadScene(6);
-            screenIndex = 6;
+            if (a[4] == 0)
+            {
+                SceneManager.LoadScene(6);
+                screenIndex = 6;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 4;
+            }
         }
         else if (level_select.gameObject.tag == "level6")
         {
-            SceneManager.LoadScene(7);
-            screenIndex = 7;
+            if (a[5] == 0)
+            {
+                SceneManager.LoadScene(7);
+                screenIndex = 7;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 5;
+            }
         }
         else if (level_select.gameObject.tag == "level7")
         {
-            SceneManager.LoadScene(8);
-            screenIndex = 8;
+            if (a[6] == 0)
+            {
+                SceneManager.LoadScene(8);
+                screenIndex = 8;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 6;
+            }
         }
         else if (level_select.gameObject.tag == "level8")
         {
-            SceneManager.LoadScene(9);
-            screenIndex = 9;
+            if (a[7] == 0)
+            {
+                SceneManager.LoadScene(9);
+                screenIndex = 9;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 7;
+            }
         }
         else if (level_select.gameObject.tag == "level9")
         {
-            SceneManager.LoadScene(10);
-            screenIndex = 10;
+            if (a[8] == 0)
+            {
+                SceneManager.LoadScene(10);
+                screenIndex = 10;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 8;
+            }
         }
         else
         {
-            SceneManager.LoadScene(11);
-            screenIndex = 11;
+            if (a[9] == 0)
+            {
+                SceneManager.LoadScene(11);
+                screenIndex = 11;
+            }
+
+            else
+            {
+                QuestionCanvas.SetActive(true);
+                level = 9;
+            }
         }
         previousScreenIndex = screenIndex;
     }
