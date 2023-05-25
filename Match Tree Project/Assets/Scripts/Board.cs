@@ -13,7 +13,6 @@ public sealed class Board : MonoBehaviour
 
     public GameObject badgeCanvas;
     public GameObject gameCanvas;
-    [SerializeField] private UnityEngine.UI.Image image = null;
 
     public Achievements ach;
 
@@ -24,8 +23,8 @@ public sealed class Board : MonoBehaviour
     public Row[] rows;
 
     public Tile[,] Tiles { get; private set; }
-    // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                         10
-    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 20, -1, -1, 10 }, { 30, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 10, -1, 120 } };
+    // Points, Pops, Moves, TimeValue           1                    2                     3                    4                    5                    6                    7                    8                      9                   10
+    public int[,] Goals = new int[,] { { 100, -1, -1, -1 }, { 200, -1, -1, 180 }, { 300, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -81,7 +80,7 @@ public sealed class Board : MonoBehaviour
 
     private void Update()
     {
-        //Points, Pops, Moves, TimeValue              1                   2                   3                   4                 5                6               7                8                  9                 10
+        //Points, Pops, Moves, TimeValue              1                   2                   3                   4                 5                     6                   7                   8                    9                    10
         //public int[,] Goals = new int[,]{ { 100, -1, -1, -1}, { 200, -1, -1, 180}, { 300, -1, -1, -1}, { 100, -1, 10, -1}, { 500, -1, -1, -1}, { -1, 50, -1, 60}, { 500, -1, -1, 300}, { -1, 100, -1, 60}, { 500, 150, -1, -1}, { -1, 200, -1, 120} };
 
         //tikrinam, ar reikia laikmačio. Jei reikia - skaičiuojam ir atvaizduojam
@@ -89,80 +88,124 @@ public sealed class Board : MonoBehaviour
         {
             DisplayTime(timeValue);
             timeValue -= Time.deltaTime;
-            if (timeValue < 0)
+        }
+
+        //Lygių perėjimo kriterijai, tikrinimai
+        if (level == 0)
+        {
+            if (score >= Goals[level, 0])
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+        }
+        else if (level == 1)
+        {
+            if (score >= Goals[level, 0]  && timeValue > 0)
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+
+            else if (score >= Goals[level, 0] && timeValue <= 0)
+            {
                 SceneManager.LoadScene(14);
+            }
         }
-
-        //tikrinam, ar goal turi nurodyta ejimu skaiciu
-        if (Goals[level, 2] > 0)
+        else if (level == 2)
         {
-            if (maxMoves == 0)
+            if (score >= Goals[level, 0])
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+        }
+        else if (level == 3)
+        {
+            if (score >= Goals[level, 0] && maxMoves > 0)
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+            else if (score < Goals[level, 0] && maxMoves == 0)
+            {
                 SceneManager.LoadScene(14);
-            else if (maxMoves > 0 && score >= Goals[level, 0] && level != 9)
-            {
-                poppingSoundEffect = null;
-                if (image != null)
-                {
-                    image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
-                }
-
-                ach.SetAchieved(level, 1);
-
-                Invoke("openScene", 1);
-
             }
-            else if (maxMoves > 0 && score >= Goals[level, 0] && level == 9)
-                SceneManager.LoadScene(15);
         }
-
-        //tikrinam, ar surinktas reikiamas kiekis tasku
-        if (Goals[level, 0] > 0)
+        else if (level == 4)
         {
-            if (score >= Goals[level, 0] && level != 9)
+            if (score >= Goals[level, 0])
             {
                 poppingSoundEffect = null;
-                if (image != null)
-                {
-                    image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
-                }
-
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
             }
-            if (score >= Goals[level, 0] && level == 9)
-                SceneManager.LoadScene(15);
         }
-
-        //tikrinam, ar reikia susprogdinti tam tikrą skaičių gems
-        if (Goals[level, 1] > 0)
+        else if (level == 5)
         {
-            if (gemsPoppedCount >= Goals[level, 1] && level != 9)
+            if (gemsPoppedCount >= Goals[level, 1] && timeValue > 0)
             {
                 poppingSoundEffect = null;
-                if (image != null)
-                {
-                    image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
-                }
-
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
-                
-
             }
-            if (gemsPoppedCount >= Goals[level, 1] && level == 9)
+            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
             {
-                
-                if (image != null)
-                {
-                    image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
-                }
+                SceneManager.LoadScene(14);
+            }
+        }
+        else if (level == 6)
+        {
+            if (score >= Goals[level, 0] && timeValue > 0)
+            {
+                poppingSoundEffect = null;
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
+            }
+            else if (score < Goals[level, 0] && timeValue <= 0)
+            {
+                SceneManager.LoadScene(14);
+            }
+        }
+        else if (level == 7)
+        {
+            if (gemsPoppedCount >= Goals[level, 1] && timeValue > 0)
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
+            {
+                SceneManager.LoadScene(14);
+            }
+        }
+        else if (level == 8)
+        {
+            if (gemsPoppedCount >= Goals[level, 1] && score >= Goals[level, 0])
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
+            }
+        }
+        else if (level == 9)
+        {
+            if (gemsPoppedCount >= Goals[level, 1] && timeValue > 0)
+            {
+                poppingSoundEffect = null;
+                ach.SetAchieved(level, 1);
                 SceneManager.LoadScene(15);
             }
-                
+            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
+            {
+                SceneManager.LoadScene(14);
+            }
         }
-
     }
 
     public void DisplayTime(float time)
