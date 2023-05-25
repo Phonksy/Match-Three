@@ -65,4 +65,26 @@ public sealed class Tile : MonoBehaviour
 
         return result;
     }
+
+    public void SetSelectedColor()
+    {
+        // Modify the appearance or color of the tile when selected
+        // For example, you can change the tile's color to indicate selection
+        var image = GetComponent<Image>();
+        if (image != null)
+        {
+            image.color = Color.cyan;
+        }
+    }
+
+    public void ResetColor()
+    {
+        // Reset the appearance or color of the tile after the move
+        // For example, you can change the tile's color back to its original color
+        var image = GetComponent<Image>();
+        if (image != null)
+        {
+            image.color = Color.white;
+        }
+    }
 }
