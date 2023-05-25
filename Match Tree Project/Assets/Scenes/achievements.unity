@@ -2808,8 +2808,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1099125310}
   - component: {fileID: 1099125309}
-  - component: {fileID: 1099125312}
   - component: {fileID: 1099125311}
+  - component: {fileID: 1099125312}
   - component: {fileID: 1099125313}
   m_Layer: 0
   m_Name: diamond

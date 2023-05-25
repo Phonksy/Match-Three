@@ -24,8 +24,8 @@ public sealed class Board : MonoBehaviour
     public Row[] rows;
 
     public Tile[,] Tiles { get; private set; }
-    // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                 10
-    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 20, -1, -1, 10 }, { 30, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 200, -1, 120 } };
+    // Points, Pops, Moves, TimeValue           1                   2                   3                   4                   5                   6                  7                   8                   9                         10
+    public int[,] Goals = new int[,] { { 10, -1, -1, -1 }, { 20, -1, -1, 10 }, { 30, -1, -1, -1 }, { 100, -1, 10, -1 }, { 500, -1, -1, -1 }, { -1, 50, -1, 60 }, { 500, -1, -1, 300 }, { -1, 100, -1, 60 }, { 500, 150, -1, -1 }, { -1, 10, -1, 120 } };
 
     private int score = 0;
     private int gemsPoppedCount = 0;
@@ -145,12 +145,22 @@ public sealed class Board : MonoBehaviour
                 }
 
                 ach.SetAchieved(level, 1);
-
                 Invoke("openScene", 1);
+                
 
             }
             if (gemsPoppedCount >= Goals[level, 1] && level == 9)
+            {
+                
+                if (image != null)
+                {
+                    image.sprite = Resources.Load<Sprite>("images/badges/" + level.ToString());
+                }
+                ach.SetAchieved(level, 1);
+                Invoke("openScene", 1);
                 SceneManager.LoadScene(15);
+            }
+                
         }
 
     }
@@ -168,7 +178,14 @@ public sealed class Board : MonoBehaviour
     {
         if (_isAnimating) return;
 
-        if (!_selection.Contains(tile)) _selection.Add(tile);
+        if (!_selection.Contains(tile)) 
+            {
+                _selection.Add(tile);
+                foreach (var selectedTile in _selection)
+                    {
+                        selectedTile.SetSelectedColor();
+                    }
+            }
 
         if (_selection.Count < 2) return;
 
@@ -177,6 +194,10 @@ public sealed class Board : MonoBehaviour
 
         if (dx + dy > 1)
         {
+            foreach (var selectedTile in _selection)
+            {
+                selectedTile.ResetColor();
+            }
             _selection.Clear();
             return;
         }
@@ -191,11 +212,21 @@ public sealed class Board : MonoBehaviour
         if (CanPop())
         {
             Pop();
+            foreach (var selectedTile in _selection)
+            {
+                selectedTile.ResetColor();
+            }
         }
         else
         {
             await Swap(_selection[0], _selection[1]);
+            foreach (var selectedTile in _selection)
+            {
+                selectedTile.ResetColor();
+            }
         }
+
+        
 
         _selection.Clear();
     }
@@ -234,6 +265,7 @@ public sealed class Board : MonoBehaviour
 
     private bool CanPop()
     {
+        
         for (var y = 0; y < Height; y++)
         {
             for (var x = 0; x < Width; x++)
