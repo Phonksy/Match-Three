@@ -109,7 +109,7 @@ public sealed class Board : MonoBehaviour
                 Invoke("openScene", 1);
             }
 
-            else if (score >= Goals[level, 0] && timeValue <= 0)
+            else if (score <= Goals[level, 0] && timeValue <= 0)
             {
                 SceneManager.LoadScene(14);
             }
@@ -131,7 +131,7 @@ public sealed class Board : MonoBehaviour
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
             }
-            else if (score < Goals[level, 0] && maxMoves == 0)
+            else if (score <= Goals[level, 0] && maxMoves == 0)
             {
                 SceneManager.LoadScene(14);
             }
@@ -153,7 +153,7 @@ public sealed class Board : MonoBehaviour
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
             }
-            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
+            else if (gemsPoppedCount <= Goals[level, 1] && timeValue <= 0)
             {
                 SceneManager.LoadScene(14);
             }
@@ -166,7 +166,7 @@ public sealed class Board : MonoBehaviour
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
             }
-            else if (score < Goals[level, 0] && timeValue <= 0)
+            else if (score <= Goals[level, 0] && timeValue <= 0)
             {
                 SceneManager.LoadScene(14);
             }
@@ -179,7 +179,7 @@ public sealed class Board : MonoBehaviour
                 ach.SetAchieved(level, 1);
                 Invoke("openScene", 1);
             }
-            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
+            else if (gemsPoppedCount <= Goals[level, 1] && timeValue <= 0)
             {
                 SceneManager.LoadScene(14);
             }
@@ -201,7 +201,7 @@ public sealed class Board : MonoBehaviour
                 ach.SetAchieved(level, 1);
                 SceneManager.LoadScene(15);
             }
-            else if (gemsPoppedCount < Goals[level, 1] && timeValue <= 0)
+            else if (gemsPoppedCount <= Goals[level, 1] && timeValue <= 0)
             {
                 SceneManager.LoadScene(14);
             }
