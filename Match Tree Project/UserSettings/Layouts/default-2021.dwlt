@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 94
+  controlID: 21
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 58
+  controlID: 71
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 59
+  controlID: 72
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -325,15 +325,15 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: "C:\\Users\\Ieva\\Desktop\\UNI\\6 semestras\\\u017Daidim\u0173
-    k\u016Brimo pagrindai\\Match-Three\\Match Tree Project"
+  m_LastProjectPath: C:\Users\MSI\Desktop\Zaidimu kurimo pagrindai\Match-Three\Match
+    Tree Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 24620000
-    m_LastClickedID: 25124
-    m_ExpandedIDs: 00000000086200000a6200000c62000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 29}
+    m_SelectedIDs: e8620000
+    m_LastClickedID: 25320
+    m_ExpandedIDs: 00000000d0620000d2620000d4620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -361,7 +361,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000086200000a6200000c620000
+    m_ExpandedIDs: 00000000d0620000d2620000d4620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000127500009061000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 82f8fffff4f9ffff2afbffffb662000050630000
+      m_ExpandedIDs: 3ed9ffff86d9ffff30dbffff3adbffff46dbffff76dbffff6adeffff5ee1ffff52e4ffff46e7ffff3ceaffff30edffff26f0ffff1af3ffff10f6ffff12f9ffff2cf9ffff3cf9ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -762,9 +762,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 91.08, y: -11.857432, z: 92.232216}
+    m_Target: {x: 598.02747, y: 307.28613, z: -8.010334}
     speed: 2
-    m_Value: {x: 91.08, y: -11.857432, z: 92.232216}
+    m_Value: {x: 598.02747, y: 307.28613, z: -8.010334}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -815,9 +815,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 435.42975
+    m_Target: 423.9107
     speed: 2
-    m_Value: 435.42975
+    m_Value: 423.9107
   m_Ortho:
     m_Target: 1
     speed: 2
