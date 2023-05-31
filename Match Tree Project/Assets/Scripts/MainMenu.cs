@@ -197,7 +197,49 @@ public class MainMenu : MonoBehaviour
         }
         previousScreenIndex = screenIndex;
     }
+//
+//[SerializeField]
+   // private List<GameObject> obstacles;
 
+   // [Min(0f)]
+  //  [SerializeField]
+  //  private int count = 6;
+
+  //  [SerializeField]
+  //  private Vector3 size = new Vector3(1f, 0f, 10f);
+
+
+   // private void OnDrawGizmos()
+  //  {
+  //      Gizmos.DrawWireCube(transform.position, size);
+  //  }
+  //  private void Start()
+  //  {
+  //      CreateObstacles();
+ //   }
+
+  //  private void CreateObstacles()
+  //  {
+  //      for (var i = 0; i < count; i++)
+  //      {
+  //          foreach(var obstacle in obstacles)
+   //         {
+   //             Instantiate(obstacle, GetRandomPosition(), 
+   //                 obstacle.transform.rotation, gameObject.transform);
+   //         }
+   //     }
+  //  }
+
+  //  private Vector3 GetRandomPosition()
+  //  {
+  //      var volumePosition = new Vector3(
+  //              Random.Range(0, size.x),
+   //             Random.Range(0, size.y),
+   //             Random.Range(0, size.z)
+   //         );
+   //     return transform.position + volumePosition - size / 2;
+  //  }
+//
     public void OpenAchievements()
     {
         SceneManager.LoadScene(12);
