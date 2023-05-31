@@ -77,6 +77,32 @@ public sealed class Board : MonoBehaviour
             }
         }
     }
+    
+    //pogostick
+    //private void Movement()
+    //{
+    //    rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
+    //    if (isGrounded)
+    //    {
+    //        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    //    }
+    //}
+
+    //private void ProcessInput()
+    //{
+    //    horizontalInput = Input.GetAxis("Horizontal");
+    //    verticalInput = Input.GetAxis("Vertical");
+    //}
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    isGrounded = true;
+    //}
+
+    //private void OnCollisionExit(Collision other)
+    //{
+    //    isGrounded = false;
+    //}
+    //
 
     private void Update()
     {
