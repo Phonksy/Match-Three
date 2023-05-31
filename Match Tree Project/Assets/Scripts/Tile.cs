@@ -154,4 +154,88 @@ public sealed class Tile : MonoBehaviour
             image.color = Color.white;
         }
     }
+    
+    //clouds
+    //[SerializeField]
+    //private Vector3 center = new Vector3(0f, 0f, 0f);
+
+    //[SerializeField]
+    //[Range(0f, 4f)]
+    //float lerpTime;
+
+    //[SerializeField]
+    //Vector3[] myPos;
+
+    //int posIndex = 0;
+    //int length;
+
+    //float t = 0f;
+
+    //private float cd = 0.0f;
+    //private Vector3 oldPosition;
+    //private Vector3 oldScale;
+
+    //[SerializeField]
+    //private ParticleSystem rain;
+
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    length = myPos.Length;
+    //    oldPosition = transform.position;
+    //    oldScale = transform.localScale;
+    //}
+
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (cd <= 10.0f)
+     //   {
+     //       StartCoroutine(MoveCloud());
+     //       cd = Time.time + 1f;
+    //    }
+    //    if(cd > 10.0f && cd <= 20.0f)
+    //    {
+    //        StartCoroutine(CenterCloud(center));
+     //       cd = Time.time + 1f;
+    //    }
+    //    if (cd > 20.0f && cd <= 30.0f)
+    //    {
+    //        StartCoroutine(BackCloud());
+    //        cd = Time.time + 1f;
+    //    }
+    //    cd = Time.time + 1f;
+    //    Debug.Log(cd);
+    //}
+    //private IEnumerator MoveCloud()
+    //{
+    //    transform.position = Vector3.Lerp(transform.position, myPos[posIndex], lerpTime * Time.deltaTime);
+
+    //    t = Mathf.Lerp(t, 1f, lerpTime * Time.deltaTime);
+
+   //     if (t > 0.9f)
+   //     {
+   //         t = 0f;
+    //        posIndex++;
+    //        posIndex = (posIndex >= length) ? 0 : posIndex;
+    //    }
+    //    yield return new WaitForSeconds(1f);
+    //}
+    //private IEnumerator CenterCloud(Vector3 position)
+    //{
+    //    transform.position = Vector3.Lerp(transform.position, position, lerpTime * Time.deltaTime);
+    //    transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), lerpTime * Time.deltaTime);
+    //    if (!rain.isPlaying)
+    //        rain.Play();
+    //    yield return new WaitForSeconds(1f);
+    //}
+    //private IEnumerator BackCloud()
+    //{
+     //   if (rain.isPlaying)
+    //        rain.Stop();
+   //     transform.position = Vector3.Lerp(transform.position, oldPosition, lerpTime * Time.deltaTime);
+    //    transform.localScale = Vector3.Lerp(transform.localScale, oldScale, lerpTime * Time.deltaTime);
+    //    yield return new WaitForSeconds(1f);
+    //}
+    //
 }
