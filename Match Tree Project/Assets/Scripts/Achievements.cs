@@ -20,7 +20,6 @@ public class Achievements : MonoBehaviour
         //float horizontalInput = Input.GetAxis("Horizontal");
         //float verticalInput = Input.GetAxis("Vertical");
         //rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
-    }
         
     }
 
