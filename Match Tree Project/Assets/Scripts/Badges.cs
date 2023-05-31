@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
+//kapsuleeinaperkoridoriusurandomkliutim
+
 public class Badges : MonoBehaviour
 {
     public Achievements ach;
@@ -18,6 +20,14 @@ public class Badges : MonoBehaviour
     public TextMeshProUGUI question;
 
     public int level;
+    
+    //capsuleController
+    //public Transform goal;
+    //void Start()
+    //{
+    //    NavMeshAgent agent = GetComponent<NavMeshAgent>();
+    //    agent.destination = goal.position;
+    //}
 
     void Start()
     {
@@ -33,6 +43,29 @@ public class Badges : MonoBehaviour
             badge.SetActive(false);
             question.enabled = true;
         }
+        
+        //startmetodekreipiamasiisita
+        //private void CreateObstacles()
+        //{
+        //    for (var i = 0; i < count; i++)
+        //    {
+        //        foreach(var obstacle in obstacles)
+        //        {  
+        //            Instantiate(obstacle, GetRandomPosition(), 
+        //                obstacle.transform.rotation, gameObject.transform);
+        //        }
+        //    }
+        //}
+
+    private Vector3 GetRandomPosition()
+    {
+        var volumePosition = new Vector3(
+                Random.Range(0, size.x),
+                Random.Range(0, size.y),
+                Random.Range(0, size.z)
+            );
+        return transform.position + volumePosition - size / 2;
+    }
 
         if (badge.activeSelf) 
         {
@@ -50,6 +83,12 @@ public class Badges : MonoBehaviour
         {
             text.enabled = true;
         }
+        
+        //darvienasmetodas
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.DrawWireCube(transform.position, size);
+        //}
     }
 
     private void OnMouseExit()
