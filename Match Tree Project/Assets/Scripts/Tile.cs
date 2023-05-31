@@ -65,6 +65,72 @@ public sealed class Tile : MonoBehaviour
 
         return result;
     }
+    
+    //kaupiamojijega
+    //[SerializeField]
+   // private float moveSpeed = 5.0f;
+
+    //[SerializeField]
+    //private Color color;
+
+    //[SerializeField]
+    //private Text text;
+
+    //private Color baseColor;
+    //private Renderer currentMaterial;
+    //private bool isCharging = false;
+    //private float T;
+    //private float force;
+    //private Hand hand;
+
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    currentMaterial = GetComponent<Renderer>();
+    //    baseColor = currentMaterial.materials[1].color;
+     //   color.a = 0f;
+    //    hand = GetComponentInChildren<Hand>();
+    //}
+
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+    //    transform.position += direction * moveSpeed * Time.deltaTime;
+    //    transform.LookAt(transform.position + direction);
+
+    //    if (Input.GetKey(KeyCode.Space))
+    //    {
+    //        isCharging = true;
+     //   }
+     //   if (Input.GetKeyUp(KeyCode.Space))
+    //    {
+    //        hand.Punch(force);
+    //        isCharging = false;
+     //       currentMaterial.materials[1].color = baseColor;
+     //       StartCoroutine(Show(force));
+     //   }
+     //   if (isCharging)
+     //   {
+     //       T += Time.deltaTime;
+      //      force = T * 10f;
+      //      color.a = T;
+      //      currentMaterial.materials[1].color = color;
+      //  }
+      //  else
+      //  {
+      //      T = 0.0f;
+      //      force = 0.0f;
+      //  }
+    //}
+    //private IEnumerator Show(float force)
+    //{
+     //   text.text = "Force = " + force;
+     //   yield return new WaitForSeconds(3f);
+    //    text.text = "Force = " + 0;
+    //}
+    //
+    
 
     public void SetSelectedColor()
     {
